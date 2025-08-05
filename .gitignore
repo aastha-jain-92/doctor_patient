@@ -1,0 +1,20 @@
+
+# Ignore virtual environment
+doctorpatientvenv/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Environment variables
+.env
+
+# User-uploaded files
+media/
+
+# Django migrations (optional)
+**/migrations/*.py
+!**/migrations/__init__.py
+
+# SQLite DB (optional)
+db.sqlite3
