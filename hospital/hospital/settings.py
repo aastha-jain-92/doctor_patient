@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts'
+    'accounts',
+    'blog'
 ]
 
 MIDDLEWARE = [
@@ -128,5 +129,7 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-LOGOUT_REDIRECT_URL = 'login'  # or the URL name where you want to redirect after logout
+LOGOUT_REDIRECT_URL = 'login' 
+LOGIN_REDIRECT_URL = 'login'
+# or the URL name where you want to redirect after logout
 

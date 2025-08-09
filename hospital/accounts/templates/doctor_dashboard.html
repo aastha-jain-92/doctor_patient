@@ -131,7 +131,20 @@
                     <img src="{% static 'default-profile.png' %}" alt="Default Profile Picture">
                 {% endif %}
             </div>
+            <p>
+    <a href="{% url 'blog:doctor_create_post' %}" 
+       style="display:inline-block; background-color:#3498db; color:white; padding:10px 16px; 
+              border-radius:6px; text-decoration:none; font-weight:bold;">
+        ✏️ Write a Blog
+    </a>
+    <a href="{% url 'blog:doctor_posts' %}" 
+       style="display:inline-block; background-color:#3498db; color:white; padding:10px 16px; 
+              border-radius:6px; text-decoration:none; font-weight:bold;">
+        📚 View My Blogs
+    </a>
+</p>
         </div>
     </div>
+    
 </body>
 </html>

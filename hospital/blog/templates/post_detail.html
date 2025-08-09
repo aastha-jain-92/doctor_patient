@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ post.title }}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #fdfbfb, #ebedee);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+        }
+        .post-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .post-meta {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        .post-image {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .post-content {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #444;
+            white-space: pre-line; /* Keeps formatting from DB */
+        }
+        a.back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 15px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        a.back-link:hover {
+            background: #217dbb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="post-title">{{ post.title }}</h1>
+        <p class="post-meta">
+            By <strong>{{ post.author }}</strong> | {{ post.created_at|date:"F j, Y" }}
+        </p>
+
+        {% if post.image %}
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image">
+        {% endif %}
+
+        <div class="post-content">
+            {{ post.content|linebreaks }}
+        </div>
+
+        <a href="{% url 'blog:patient_blogs' %}" class="back-link">← Back to Posts</a>
+    </div>
+</body>
+</html>

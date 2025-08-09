@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Blogs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            color: #333;
+        }
+        .navbar {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: flex-end;
+            box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+        }
+        .logout-btn {
+            background: #ff4d4d;
+            color: white;
+            padding: 8px 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .logout-btn:hover {
+            background: #e60000;
+        }
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #444;
+            margin-bottom: 30px;
+        }
+        h3 {
+            color: #5b86e5;
+            border-bottom: 2px solid #74ebd5;
+            padding-bottom: 5px;
+        }
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        ul li {
+            background: #f0f8ff;
+            margin: 8px 0;
+            padding: 12px;
+            border-radius: 5px;
+            transition: transform 0.2s, background 0.2s;
+        }
+        ul li:hover {
+            transform: scale(1.02);
+            background: #d6f0ff;
+        }
+        a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        a:hover {
+            color: #0077cc;
+        }
+        p {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navbar with Logout -->
+    <div class="navbar">
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="logout-btn">Logout</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <h2>Doctor Blogs (Category-wise)</h2>
+
+        {% for category, posts in blogs_by_category.items %}
+            <h3>{{ category }}</h3>
+            <ul>
+                {% for post in posts %}
+                    <li>
+                        <a href="{% url 'blog:post_detail' post.pk %}">{{ post.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% empty %}
+            <p>No blogs available.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

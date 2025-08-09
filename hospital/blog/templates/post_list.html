@@ -1,0 +1,25 @@
+
+<h2>Blogs{% if selected_category %} — {{ selected_category }}{% endif %}</h2>
+
+<nav>
+  Categories:
+  {% for key, value in categories.items %}
+    <a href="{% url 'blog:post_list_by_category' key %}">{{ value }}</a> |
+  {% endfor %}
+  <a href="{% url 'blog:post_list' %}">All</a>
+</nav>
+
+<ul>
+  {% for post in posts %}
+  <li>
+    <h3><a href="{% url 'blog:post_detail' post.pk %}">{{ post.title }}</a></h3>
+    {% if post.image %}
+      <img src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width:200px;">
+    {% endif %}
+    <p>{{ post.summary|truncatewords:15 }}</p>
+    <small>Category: {{ post.get_category_display }} | By {{ post.author.username }}</small>
+  </li>
+  {% empty %}
+  <li>No posts yet.</li>
+  {% endfor %}
+</ul>
